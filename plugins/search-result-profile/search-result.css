@@ -1,0 +1,72 @@
+.filter-input {
+    margin: 15px;
+    height: 25px !important;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.profile-image-content {
+    margin-left: 0px;
+}
+
+.profile-image {
+    width: 500;
+    height: 500;
+}
+
+.profile-content {
+    margin-left: 100px;
+}
+
+.profile-item {
+    margin-bottom: 15px;
+}
+
+.profile-item-email {
+    margin-bottom: 15px;
+}
+
+.profile-item-link {
+    margin-bottom: 15px;
+}
+
+.profile-item-email>label {
+    font-size: larger;
+    font-style:italic;
+    font-weight: bold;
+    color: black;
+}
+
+.profile-item-link>label {
+    font-size: larger;
+    font-style:italic;
+    font-weight: bold;
+    color: black;
+}
+.profile-item-link ul>li>a {
+    color:black;
+}
+
+
+.profile-item label {
+    font-size: x-large;
+    font-weight: bold;
+    color: black;
+}
+
+.profile-item p {
+    margin-left: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+    }
+    .profile-content {
+        margin: 0px;
+    }
+}
