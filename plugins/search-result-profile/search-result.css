@@ -1,6 +1,9 @@
 .filter-input {
-    margin: 15px;
+    margin: 0px !important;
     height: 25px !important;
+    text-align: center !important;
+    border-radius: 5px !important;
+    /*background-color: aliceblue !important;*/
 }
 
 .profile-container {
@@ -60,6 +63,55 @@
 
 .profile-item p {
     margin-left: 15px;
+}
+
+.filter-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#search-result-table th, td {
+    text-align: center;
+}
+
+#search-result-table thead {
+    background-color: ghostwhite;
+}
+
+#search-result-table th {
+    color: black;
+}
+
+#search-result-table_length {
+    display: none;
+}
+
+#search-result-table_filter {
+    display: none;
+}
+
+button#show-all-btn {
+    height: 30px;
+    width: 150px;
+    border-radius: 5px;
+    float: right;
+    margin: 10px;
+    background-color: rgb(228, 228, 228);
+    border-collapse: unset;
+    /* border: thick; */
+
+}
+
+.link-btn {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgb(228, 228, 228);
+}
+
+.link-btn a {
+    text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {

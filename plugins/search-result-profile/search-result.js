@@ -1,56 +1,31 @@
 
+
+
 jQuery(document).ready( function(){
-    var filter_current_employer = jQuery('#filter-current-employer');
-    var filter_person = jQuery('#filter-person');
-    console.log(filter_person);
-    function myFilter(input, filter_column) {
-        var input, filter, table, tr, td, i, txtValue;
-        filter = input.toUpperCase();
-        table = document.getElementById("search-result-table");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByClassName(filter_column)[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }       
+    
+    var search_table = jQuery('#search-result-table').DataTable({
+        "bSort": false,
+        "lengthMenu": [[20, -1], [20, "All"]],
+        "language": {
+            "info": "Showing _START_ to _END_ of _TOTAL_ employees"
         }
-    }
-
-    filter_current_employer.on('change', function(e){
-        myFilter(filter_current_employer.val(), 'current-employer-col');
     });
 
-    filter_current_employer.on('keydown', function(e){
-        filter_current_employer.trigger('change');   
-    });
+    jQuery('#search-result-table thead tr th').each( function (i) {
+        jQuery( 'input', this ).on( 'keyup change', function () {
+            if ( search_table.column(i).search() !== this.value ) {
+                search_table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
 
-    filter_current_employer.on('keyup', function(e){
-        filter_current_employer.trigger('change');
+    jQuery('#show-all-btn').on('click', function(e) {
+        jQuery('#search-result-table thead tr th input').each(function (i) {
+            jQuery(this).val("");
+            jQuery(this).trigger('change');
+        });
     });
-
-    filter_current_employer.on('keypress', function(e){
-        filter_current_employer.trigger('change');
-    });
-
-    filter_person.on('change', function(e){
-        myFilter(filter_person.val(), 'person-col');
-    });
-
-    filter_person.on('keypress', function(e){
-        filter_person.trigger('change');    
-    });
-
-    filter_person.on('keydown', function(e){
-        filter_person.trigger('change');    
-    });
-
-    filter_person.on('keyup', function(e){
-        filter_person.trigger('change');
-    });
-
 });
