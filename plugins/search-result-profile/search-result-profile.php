@@ -94,17 +94,25 @@ function search_profile_by_id(){
 
 function search_result_by_company_person($param) {
     $no_whitespaces = preg_replace( '/\s*,\s*/', ',', filter_var( $param['search_key'], FILTER_SANITIZE_STRING ) ); 
-    $s_key_array = explode( ',', $no_whitespaces );
+    if(strlen($no_whitespaces) == 0){
+        $s_key_array = ['0' => 'company', '1' => 'person'];
+    } else {
+        $s_key_array = explode( ',', $no_whitespaces );
+    }
     $result = NULL;
     $profiles = NULL;
     $search_url = SEARCH_COMPANY_PERSON . "?api_key=". API_KEY;
     $searchable = 0;
-    foreach ( $s_key_array as $k => $v ) { 
-        if(isset($_GET[$v])){
+    $search_all = "";
+    foreach ( $s_key_array as $k => $s_key ) { 
+        if(isset($_GET[$s_key])){
             $searchable = 1;
-            $search_value = $_GET[$v];    
-            $req = $v=='person'?'name':$v;
-            $search_url .= '&'. $req. '='. $search_value;
+            $search_value = $_GET[$s_key];    
+            $search_key = $s_key=='person'?'name':$s_key;
+            $search_url .= '&'. $search_key. '='. $search_value;
+            if($s_key == 'company') {
+                $search_all = substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], "?")). '?company='. $search_value;
+            }
         }
     }
     if($searchable == 1){
@@ -120,17 +128,17 @@ function search_result_by_company_person($param) {
         if ($result === FALSE) { /* Handle error */ }
     }
 
-
-    $render_str = <<<TABLE
-    <button id='show-all-btn' class='btn'>Show All Employees</button>
-    <table id='search-result-table' class='js-dynamitable table table-bordered'>
+    $search_all_href = strlen($search_all) > 0 ? "href='". $search_all . "'" : "";
+    $render_str = "<a class='btn btn-red pull-right'". $search_all_href. "> Show All Employees </a>";
+    $render_str .= <<<TABLE
+    <table id='search-result-table' class='table table-bordered'>
 			<thead>
 				<tr>
-					<th>Photo<input id='0' type='hidden'/><div>&nbsp</div></th>
-					<th><div class='filter-input-container'><div class="filter-title">Name</div> <input id='1' class="filter-input" type="text" placeholder='' value=""></div></th>
-                    <th><div class='filter-input-container'><div class="filter-title">Current Employer</div> <input id='2' class="filter-input" type="text" placeholder='' value=""></div></th>
-                    <th><div class='filter-input-container'><div class="filter-title">Current Title</div> <input id='3' class="filter-input" type="text" placeholder='' value=""></div></th>
-					<th><input id='4' type='hidden'/>Detail<div>&nbsp</div></th>
+					<th></th>
+					<th>Name<br><input id='1' class="filter-input" type="text" placeholder='' value=""></th>
+                    <th>Employer<br><input id='2' class="filter-input" type="text" placeholder='' value=""></th>
+                    <th>Title<br><input id='3' class="filter-input" type="text" placeholder='' value=""></th>
+					<th>Contact Detail</th>
 				</tr>
 				
 			</thead>
@@ -139,10 +147,10 @@ TABLE;
     
     foreach($profiles->profiles as $profile) {
         $pic_url = $profile->profile_pic ? $profile->profile_pic : plugins_url('person.png', __FILE__ );
-        $render_str .= "<tr><td><img src='". $pic_url . "'width=100 height=100 /></td><td class='person-col'>". $profile->name. "</td><td class='current-employer-col'>". $profile->current_employer
-                    . "</td>". "<td class='current-title-col'>".$profile->current_title. "</td><td><a href='"
+        $render_str .= "<tr><td><img class='search-image' src='". $pic_url . "'width=100 height=100 /></td><td class='person-col'>". $profile->name. "</td><td class='current-employer-col'>". $profile->current_employer
+                    . "</td>". "<td class='current-title-col'>".$profile->current_title. "</td><td><a class='btn btn-red' href='"
                     . substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], "?")). "/". $param['url']. "?id=". $profile->id
-                    . "' ><button class='link-btn'>Profile</button></a></td></tr>";
+                    . "' >Profile</a></td></tr>";
     }
     $render_str .= "</tbody></table>";
     return $render_str;
@@ -151,7 +159,7 @@ TABLE;
 add_shortcode('search_result_company_person', 'search_result_by_company_person');
 add_shortcode('search_profile_id', 'search_profile_by_id');
 
-function table_filter() {
+function datatable_control() {
     wp_register_style('search_result_c_p', plugins_url('search-result.css', __FILE__ ));
     wp_register_script( 'search_result_c_p', plugins_url('search-result.js', __FILE__ ));
     wp_enqueue_style('search_result_c_p');
@@ -162,6 +170,7 @@ function table_filter() {
     wp_register_style( 'datatable', 'https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css');
     wp_enqueue_style('datatable');
     wp_enqueue_script('datatable');
+    
 }
 
-add_action('wp_enqueue_scripts', 'table_filter');
+add_action('wp_enqueue_scripts', 'datatable_control');
