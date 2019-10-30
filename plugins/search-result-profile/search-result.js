@@ -6,7 +6,8 @@ jQuery(document).ready( function(){
         "lengthMenu": [[20, -1], [20, "All"]],
         "language": {
             "info": "Showing _START_ to _END_ of _TOTAL_ employees"
-        }
+        },
+        "responsive": true
     });
 
     jQuery('#search-result-table thead tr th').each( function (i) {
@@ -25,5 +26,14 @@ jQuery(document).ready( function(){
             jQuery(this).val("");
             jQuery(this).trigger('change');
         });
+    });
+
+    jQuery('#email-label').on('click', function(e) {
+        jQuery('#email-div').toggleClass('mobile-hidden');
+        jQuery('#email-label i').toggleClass('active');
+    });
+    jQuery('#link-label').on('click', function(e) {
+        jQuery('#link-div').toggleClass('mobile-hidden');
+        jQuery('#link-label i').toggleClass('active');
     });
 });
