@@ -67,19 +67,36 @@ function search_profile_by_id(){
                     <div class='col-lg-8'><a href='". $profile[0]->linkedin_url ."'>". $profile[0]->linkedin_url. "</a></div>
 				</div>
             </div>
-        </div>
-        <div class='profile-section'>
-            <div class='col-md-6'>
-                <div id='email-label' class='mobile-colored'><span><label class='profile-label-colored mobile-white'> Emails </label></span> <i class='desktop-hidden fa fa-chevron-down pull-right'></i></div>
-                <div id='email-div' class='margin-left-15 mobile-hidden'>
-                    <div>";
+            <div class='profile-section-col'>
+                <div class=''>
+                    <div id='email-label' class='red-colored'><span><label class='profile-label-colored color-white'> Emails </label></span> <i class='fa fa-chevron-down pull-right'></i></div>
+                    <div id='email-div' class='margin-left-15 display-none'>
+                        <div>";
+                            $index = false;
+                            foreach($profile[0]->emails as $email){
+                                /*$index = !($index);
+                                if($index){
+                                    $render_str .= "<div class='row'><div class='col-md-6'>". $email->email. "</div>";
+                                } else {
+                                    $render_str .= "<div class='col-md-6'>". $email->email. "</div></div>";
+                                }*/
+                                $render_str .= "<div class=''>". $email->email. "</div>";
+                            }
+                            //if($index == true) $render_str .= '</div>';
+                        $render_str .= "
+                        </div>
+                    </div>
+                </div>
+                <div class=''>
+                    <div id='link-label' class='red-colored'><span><label class='profile-label-colored color-white'> Links </label></span> <i class='fa fa-chevron-down pull-right'></i></div>
+                    <div id='link-div' class='margin-left-15 display-none'>";
                         $index = false;
-                        foreach($profile[0]->emails as $email){
+                        foreach($profile[0]->links as $key => $link){
                             $index = !($index);
                             if($index){
-                                $render_str .= "<div class='row'><div class='col-md-6'>". $email->email. "</div>";
+                                $render_str .= "<div class='row'><div class='col-md-6 col-xs-6'><a href='". $link. "'>". $key. "</a></div>";
                             } else {
-                                $render_str .= "<div class='col-md-6'>". $email->email. "</div></div>";
+                                $render_str .= "<div class='col-md-6 col-xs-6'><a href='". $link. "'>". $key. "</a></div></div>";
                             }
                         }
                         if($index == true) $render_str .= '</div>';
@@ -87,23 +104,8 @@ function search_profile_by_id(){
                     </div>
                 </div>
             </div>
-            <div class='col-md-6'>
-                <div id='link-label' class='mobile-colored'><span><label class='profile-label-colored mobile-white'> Links </label></span> <i class='desktop-hidden fa fa-chevron-down pull-right'></i></div>
-                <div id='link-div' class='margin-left-15 mobile-hidden'>";
-                    $index = false;
-                    foreach($profile[0]->links as $key => $link){
-                        $index = !($index);
-                        if($index){
-                            $render_str .= "<div class='row'><div class='col-md-6 col-xs-6'><a href='". $link. "'>". $key. "</a></div>";
-                        } else {
-                            $render_str .= "<div class='col-md-6 col-xs-6'><a href='". $link. "'>". $key. "</a></div></div>";
-                        }
-                    }
-                    if($index == true) $render_str .= '</div>';
-                $render_str .= "
-                </div>
-            </div>
         </div>
+        
     </div>";
 
     return $render_str;
@@ -112,7 +114,7 @@ function search_profile_by_id(){
 function search_result_by_company_person($param) {
     $no_whitespaces = preg_replace( '/\s*,\s*/', ',', filter_var( $param['search_key'], FILTER_SANITIZE_STRING ) ); 
     if(strlen($no_whitespaces) == 0){
-        $s_key_array = ['0' => 'company', '1' => 'person'];
+        $s_key_array = ['0' => 'company', '1' => 'person', '2' => 'location'];
     } else {
         $s_key_array = explode( ',', $no_whitespaces );
     }
@@ -160,24 +162,26 @@ function search_result_by_company_person($param) {
 TABLE_M;
             foreach($profiles->profiles as $profile) {
                 $pic_url = $profile->profile_pic ? $profile->profile_pic : plugins_url('person.png', __FILE__ );
-                $render_str .= "<tr><td>". "<a class='' href='". substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], "?")). "/". $param['url']. "?id=". $profile->id. "' >". "<img class='search-image' src='". $pic_url . "' /></a></td>"
+                $render_str .= "<tr><td class='img-content'>". "<a class='' href='". substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], "?")). "/". $param['url']. "?id=". $profile->id. "' >". "<img class='search-image' src='". $pic_url . "' /></a></td>"
                             . "<td><a class='btn btn-nopadding btn-nomargin btn-font-bold btn-font-size-larger btn-black' href='". substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], "?")). "/". $param['url']. "?id=". $profile->id. "' >". $profile->name. "</a>"
                             . "<br><label>". $profile->current_title. "</label>"
                             . "<br><label>". $profile->current_employer. "</label>"
+                            . "<br><label>". $profile->location. "</label>"
                             . "</td></tr>";
             }
             $render_str .= "</tbody></table>";
     }
     else {
         $render_str .= <<<TABLE
-        <table id='search-result-table' class='table table-bordered'>
+        <table id='search-result-table' class='table'>
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Name<br><input id='1' class="filter-input" type="text" placeholder='' value=""></th>
-                        <th>Employer<br><input id='2' class="filter-input" type="text" placeholder='' value=""></th>
-                        <th>Title<br><input id='3' class="filter-input" type="text" placeholder='' value=""></th>
-                        <th>Contact Detail</th>
+                        <th class='width-8'></th>
+                        <th class='width-20'>Name<br><input id='1' class="filter-input" type="text" placeholder='' value=""></th>
+                        <th class='width-20'>Employer<br><input id='2' class="filter-input" type="text" placeholder='' value=""></th>
+                        <th class='width-20'>Title<br><input id='3' class="filter-input" type="text" placeholder='' value=""></th>
+                        <th class='width-20'>Location<br><input id='4' class="filter-input" type="text" placeholder='' value=""></th>
+                        <th class='width-12'>Contact Detail</th>
                     </tr>
                     
                 </thead>
@@ -186,7 +190,9 @@ TABLE;
         foreach($profiles->profiles as $profile) {
             $pic_url = $profile->profile_pic ? $profile->profile_pic : plugins_url('person.png', __FILE__ );
             $render_str .= "<tr><td><img class='search-image' src='". $pic_url . "' /></td><td class='person-col'>". $profile->name. "</td><td class='current-employer-col'>". $profile->current_employer
-                        . "</td>". "<td class='current-title-col'>".$profile->current_title. "</td><td><a class='btn btn-red' href='"
+                        . "</td>". "<td class='current-title-col'>".$profile->current_title. "</td>"
+                        . "<td class='location-col'>". $profile->location . "</td>"
+                        . "<td><a class='btn btn-red' href='"
                         . substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], "?")). "/". $param['url']. "?id=". $profile->id
                         . "' >Profile</a></td></tr>";
         }

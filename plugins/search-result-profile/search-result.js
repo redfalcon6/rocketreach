@@ -29,11 +29,11 @@ jQuery(document).ready( function(){
     });
 
     jQuery('#email-label').on('click', function(e) {
-        jQuery('#email-div').toggleClass('mobile-hidden');
+        jQuery('#email-div').toggleClass('display-none');
         jQuery('#email-label i').toggleClass('active');
     });
     jQuery('#link-label').on('click', function(e) {
-        jQuery('#link-div').toggleClass('mobile-hidden');
+        jQuery('#link-div').toggleClass('display-none');
         jQuery('#link-label i').toggleClass('active');
     });
 });
