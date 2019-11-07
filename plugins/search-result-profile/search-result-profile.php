@@ -4,7 +4,9 @@
  * Description: RobotReach Search Functionality With Company Name And Person Name.
  * Version: 1.0
  */
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include('rocket-reach-infor.php');
 
 function isMobile() {
@@ -39,69 +41,71 @@ function search_profile_by_id(){
             </div>
             <div class='profile-main'>
                 <div class='row'>
-                    <div class='col-lg-3'><label class='profile-label-colored'>Name</label></div>
-                    <div class='col-lg-8'>". $profile[0]->name . "</div>
+                    <div class='col-lg-1 col-xs-2'><span><i class='colored-person-icon fa fa-user'></i></span></div>
+                    <div class='col-lg-10 col-xs-10'><label class='name-label'>". $profile[0]->name . "</label></div>
 				</div>
-				<div class='row'>
-					<div class='col-lg-3'><label class='profile-label-colored'>Title</label></div>
-                    <div class='col-lg-8'>". $profile[0]->current_title."</div>
+				<div class='row line-spacing-1'>
+					<div class='col-lg-1 col-xs-2'></div>
+                    <div class='col-lg-10 col-xs-10 main-profile'>". $profile[0]->current_title."</div>
 				</div>
-				<div class='row'>
-					<div class='col-lg-3'><label class='profile-label-colored'>Employer</label></div>
-                    <div class='col-lg-8'>". $profile[0]->current_employer . "</div>
+				<div class='row line-spacing-1'>
+					<div class='col-lg-1 col-xs-2'></div>
+                    <div class='col-lg-10 col-xs-10 main-profile'>". $profile[0]->current_employer . "</div>
 				</div>
-				<div class='row'>
-					<div class='col-lg-3'><label class='profile-label-colored'>Location</label></div>
-                    <div class='col-lg-8'>". $profile[0]->location . "</div>
+				<div class='row line-spacing-1'>
+					<div class='col-lg-1 col-xs-2'></div>
+                    <div class='col-lg-10 col-xs-10 main-profile'>". $profile[0]->location . "</div>
 				</div>
-				<div class='row'>
-					<div class='col-lg-3'><label class='profile-label-colored'>Work Email</label></div>
-                    <div class='col-lg-8'>". $profile[0]->current_work_email . "</div>
+				<div class='row line-spacing-2'>
+					<div class='col-lg-1 col-xs-2'><span><i class='colored-mail-icon fa fa-envelope'></i></span></div>
+                    <div class='col-lg-10 col-xs-10'><label class='mail-label'>Work:</label><a class='mail-link' href='mailto:". $profile[0]->current_work_email . "'>". $profile[0]->current_work_email . "</a></div>
 				</div>
-				<div class='row'>
-					<div class='col-lg-3'><label class='profile-label-colored'>Personal Email</label></div>
-                    <div class='col-lg-8'>". $profile[0]->current_personal_email . "</div>
+				<div class='row line-spacing-2'>
+					<div class='col-lg-1 col-xs-2'><span><i class='colored-mail-icon fa fa-envelope'></i></span></div>
+                    <div class='col-lg-10 col-xs-10'><label class='mail-label'>Personal:</label><a class='mail-link' href='mailto:". $profile[0]->current_personal_email. "'>". $profile[0]->current_personal_email . "</a></div>
                 </div>
                 <div class='row'>
-					<div class='col-lg-3'><label class='profile-label-colored'>Linkedin URL</label></div>
-                    <div class='col-lg-8'><a href='". $profile[0]->linkedin_url ."'>". $profile[0]->linkedin_url. "</a></div>
+					<div class='col-lg-1 col-xs-2'><div class='linkedin-label-container'><span><i class='colored-linkedin-icon fa fa-linkedin'></i></span></div></div>
+                    <div class='col-lg-10 col-xs-10'><a class='linkedin-link' href='". $profile[0]->linkedin_url ."'>". $profile[0]->linkedin_url. "</a></div>
 				</div>
             </div>
             <div class='profile-section-col'>
-                <div class=''>
+                <div class='search-employer-btn'>".
+                "<a class='btn btn-red pull-right border-radius-zero' href='". $_SESSION['search_employer_url']. "'> Search Employer </a>";
+                /*
                     <div id='email-label' class='red-colored'><span><label class='profile-label-colored color-white'> Emails </label></span> <i class='fa fa-chevron-down pull-right'></i></div>
                     <div id='email-div' class='margin-left-15 display-none'>
                         <div>";
-                            $index = false;
-                            foreach($profile[0]->emails as $email){
-                                /*$index = !($index);
-                                if($index){
-                                    $render_str .= "<div class='row'><div class='col-md-6'>". $email->email. "</div>";
-                                } else {
-                                    $render_str .= "<div class='col-md-6'>". $email->email. "</div></div>";
-                                }*/
-                                $render_str .= "<div class=''>". $email->email. "</div>";
-                            }
+                            //$index = false;
+                            //foreach($profile[0]->emails as $email){
+                                
+                            //    $render_str .= "<div class=''>". $email->email. "</div>";
+                            //}
                             //if($index == true) $render_str .= '</div>';
                         $render_str .= "
                         </div>
                     </div>
+                */
+                $render_str .= "
                 </div>
-                <div class=''>
+                <div class=''>";
+                /*
                     <div id='link-label' class='red-colored'><span><label class='profile-label-colored color-white'> Links </label></span> <i class='fa fa-chevron-down pull-right'></i></div>
                     <div id='link-div' class='margin-left-15 display-none'>";
-                        $index = false;
-                        foreach($profile[0]->links as $key => $link){
-                            $index = !($index);
-                            if($index){
-                                $render_str .= "<div class='row'><div class='col-md-6 col-xs-6'><a href='". $link. "'>". $key. "</a></div>";
-                            } else {
-                                $render_str .= "<div class='col-md-6 col-xs-6'><a href='". $link. "'>". $key. "</a></div></div>";
-                            }
-                        }
-                        if($index == true) $render_str .= '</div>';
+                        //$index = false;
+                        //foreach($profile[0]->links as $key => $link){
+                        //    $index = !($index);
+                        //    if($index){
+                        //        $render_str .= "<div class='row'><div class='col-md-6 col-xs-6'><a href='". $link. "'>". $key. "</a></div>";
+                        //    } else {
+                        //        $render_str .= "<div class='col-md-6 col-xs-6'><a href='". $link. "'>". $key. "</a></div></div>";
+                        //    }
+                        //}
+                        //if($index == true) $render_str .= '</div>';
                     $render_str .= "
                     </div>
+                */
+                $render_str .= "
                 </div>
             </div>
         </div>
@@ -112,6 +116,7 @@ function search_profile_by_id(){
 }
 
 function search_result_by_company_person($param) {
+    $_SESSION['search_employer_url'] = $_SERVER["REQUEST_URI"];
     $no_whitespaces = preg_replace( '/\s*,\s*/', ',', filter_var( $param['search_key'], FILTER_SANITIZE_STRING ) ); 
     if(strlen($no_whitespaces) == 0){
         $s_key_array = ['0' => 'company', '1' => 'person', '2' => 'location'];

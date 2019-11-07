@@ -283,12 +283,38 @@
     .profile-main {
         margin-top: 15px;
         margin-left: 15px;
+        width: 100%;
     }
 
     .profile-section-col {
         width: 100%;
     }
+    .profile-main .row .col-lg-8, .col-xs-10 {
+        transform: translateY(4px);
+    }
+    .profile-main .col-xs-10 {
+        padding: 0px !important;
+    }
     
+    .search-employer-btn {
+        margin-top: 0px !important;
+    }
+}
+
+.border-radius-zero {
+    border-radius: 0;
+}
+
+.search-employer-btn {
+    margin-top: 150px;
+}
+
+.linkedin-link {
+    color: red !important;
+}
+
+.mail-link {
+    color: gray !important;
 }
 
 #email-label .fa.active {
@@ -314,4 +340,63 @@
 .img-content {
     vertical-align: top !important;
     padding-top: 18px !important;
+}
+
+.colored-person-icon {
+    color: red;
+    font-size: xx-large !important;
+    text-transform: uppercase;
+    text-align: center; 
+    vertical-align: middle;
+}
+.colored-mail-icon {
+    color: red;
+    font-size: x-large !important;
+    text-transform: uppercase;
+    text-align: center; 
+    vertical-align: middle;
+}
+.linkedin-label-container {
+    border-radius: 50%;
+    background-color: red;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+}
+.colored-linkedin-icon {
+    color: white;
+    font-size: 20px !important;
+    text-transform: uppercase;
+    text-align: center; 
+    vertical-align: middle;
+    margin-left: 2px;
+    margin-bottom: 8px;
+
+}
+.profile-main .row .col-lg-8, .col-xs-10 {
+    transform: translateY(4px);
+}
+.name-label {
+    color: black;
+    font-size: x-large !important;
+    font-weight: bold;
+}
+.mail-label {
+    color: black;
+    font-size:large;
+    font-style:italic;
+    margin-right: 20px;
+}
+
+.main-profile {
+    color: black;
+}
+.line-spacing-1 {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+}
+
+.line-spacing-2 {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
 }
