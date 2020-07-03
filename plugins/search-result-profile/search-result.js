@@ -1,32 +1,30 @@
 
 jQuery(document).ready( function(){
-    
-    var search_table = jQuery('#search-result-table').DataTable({
-        "bSort": false,
-        "lengthMenu": [[20, -1], [20, "All"]],
-        "language": {
-            "info": "Showing _START_ to _END_ of _TOTAL_ employees"
-        },
-        "responsive": true
-    });
+    let searchData = {};
+    let keys = ['person', 'company', 'title', 'location'];
+    for (let key of keys) {
+        let el = jQuery(`.form-group:not(.hidden) #${key}`);
+        if (el.length) {
+            searchData[key] = el.val()
+        }
+    }
+    searchData['profile_uri'] = jQuery('#profile_uri').text();
 
-    jQuery('#search-result-table thead tr th').each( function (i) {
-        jQuery( 'input', this ).on( 'keyup change', function () {
-            if ( search_table.column(i).search() !== this.value ) {
-                search_table
-                    .column(i)
-                    .search( this.value )
-                    .draw();
+    jQuery('#search-result-table').DataTable({
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "/wp-json/employers/profiles",
+        "fnServerParams": function ( aoData ) {
+            for (let key in searchData) {
+                aoData.push({
+                    'name': key,
+                    'value': searchData[key]
+                })
             }
-        } );
-    } );
-
-    jQuery('#show-all-btn').on('click', function(e) {
-        jQuery('#search-result-table thead tr th input').each(function (i) {
-            jQuery(this).val("");
-            jQuery(this).trigger('change');
-        });
+        },
+        "sServerMethod": "POST"
     });
+
 
     jQuery('#email-label').on('click', function(e) {
         jQuery('#email-div').toggleClass('display-none');
