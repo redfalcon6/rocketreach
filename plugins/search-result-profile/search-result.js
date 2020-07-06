@@ -3,7 +3,7 @@ jQuery(document).ready( function(){
     let searchData = {};
     let keys = ['person', 'company', 'title', 'location'];
     for (let key of keys) {
-        let el = jQuery(`.form-group:not(.hidden) #${key}`);
+        let el = jQuery(`.search-element:not(.hidden) #${key}`);
         if (el.length) {
             searchData[key] = el.val()
         }
