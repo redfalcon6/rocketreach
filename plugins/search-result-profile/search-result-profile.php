@@ -71,7 +71,7 @@ function search_profile_by_id(){
             </div>
             <div class='profile-section-col'>
                 <div class='search-employer-btn'>".
-                "<a class='btn btn-red pull-right border-radius-zero' href='". $_SESSION['search_employer_url']. "'> Search Employer </a>";
+                "<a class='btn btn-red pull-right border-radius-zero' href='". $_SESSION['search_employer_url']. "'> Search Contacts </a>";
                 /*
                     <div id='email-label' class='red-colored'><span><label class='profile-label-colored color-white'> Emails </label></span> <i class='fa fa-chevron-down pull-right'></i></div>
                     <div id='email-div' class='margin-left-15 display-none'>
@@ -134,7 +134,7 @@ function search_result_by_company_person($param) {
 
     $render_str = '
     <form method="get" class="form-horizontal" id="search-form">
-        <h5> Search Employers </h5>' . (in_array('person', $s_key_array) ? 
+        <h5> Search Contacts </h5>' . (in_array('person', $s_key_array) ? 
         '<div class="col-md-6 search-element">
             <label for="name" class="col-md-3">Name:</label>
             <div class="col-md-9">
@@ -162,7 +162,7 @@ function search_result_by_company_person($param) {
         </div>' : '') . 
         '
         <div class="search-btn search-element">
-            <input type="submit" class="btn btn-red" value="Search Contacts">
+            <input type="submit" class="btn btn-red" value="Search">
         </div>
     </form> 
     <div id="profile_uri" class="hidden">' . substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], "?")). "/". $param['url'] . '</div>';
