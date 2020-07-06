@@ -135,35 +135,34 @@ function search_result_by_company_person($param) {
     $render_str = '
     <form method="get" class="form-horizontal" id="search-form">
         <h5> Search Employers </h5>' . (in_array('person', $s_key_array) ? 
-        '<div class="form-group">
-            <label for="name" class="col-sm-2">Name:</label>
-            <div class="col-sm-10">
+        '<div class="col-md-6 search-element">
+            <label for="name" class="col-md-3">Name:</label>
+            <div class="col-md-9">
                 <input type="text" class="form-control" name="person" id="person" value="' .$values['person']. '">
             </div>
         </div>' : '') . (in_array('company', $s_key_array) ? 
-        '<div class="form-group">
-            <label for="company" class="col-sm-2">Employer:</label>
-            <div class="col-sm-10">
+        '<div class="col-md-6 search-element">
+            <label for="company" class="col-md-3">Employer:</label>
+            <div class="col-md-9">
                 <input type="text" class="form-control" name="company" id="company" value="' . $values['company'] . '">
             </div>
         </div>' : '') . (in_array('title', $s_key_array) ? 
-        '<div class="form-group">
-            <label for="title" class="col-sm-2">Title:</label>
-            <div class="col-sm-10">
+        '<div class="col-md-6 search-element">
+            <label for="title" class="col-md-3">Title:</label>
+            <div class="col-md-9">
                 <input type="text" class="form-control" name="title" id="title" value="' . $values['title'] . '">
             </div>
         </div>' : '') . (in_array('location', $s_key_array) ? 
-        '<div class="form-group">
-            <label for="location" class="col-sm-2">Location:</label>
+        '<div class="col-md-6 search-element">
+            <label for="location" class="col-md-3">Location:</label>
 
-            <div class="col-sm-10">
+            <div class="col-md-9">
                 <input type="text" class="form-control" name="location" id="location" value="' . $values['location'] . '">
             </div>
         </div>' : '') . 
-        '<div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" class="btn btn-red pull-right" value="Show Employees">
-            </div>
+        '
+        <div class="search-btn search-element">
+            <input type="submit" class="btn btn-red" value="Search Contacts">
         </div>
     </form> 
     <div id="profile_uri" class="hidden">' . substr($_SERVER["REQUEST_URI"], 0, strpos($_SERVER["REQUEST_URI"], "?")). "/". $param['url'] . '</div>';

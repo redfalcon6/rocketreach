@@ -10,6 +10,10 @@ jQuery(document).ready( function(){
     }
     searchData['profile_uri'] = jQuery('#profile_uri').text();
 
+    jQuery('html, body').animate({
+        scrollTop: jQuery('#search-result-table').offset().top - 100
+    }, 100);
+
     jQuery('#search-result-table').DataTable({
         "bProcessing": true,
         "bServerSide": true,
