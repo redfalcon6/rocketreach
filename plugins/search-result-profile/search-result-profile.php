@@ -288,8 +288,8 @@ function datatable_control() {
     wp_register_style('fontawesome', "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
     wp_enqueue_style('fontawesome');
 
-    wp_register_style('search_result_c_p', plugins_url('search-result.css', __FILE__ ));
-    wp_enqueue_style('search_result_c_p');
+ /**   wp_register_style('search_result_c_p', plugins_url('search-result.css', __FILE__ ));
+    wp_enqueue_style('search_result_c_p'); **/
     wp_register_script( 'search_result_c_p', plugins_url('search-result.js', __FILE__ ));
     wp_enqueue_script('search_result_c_p');
 }
