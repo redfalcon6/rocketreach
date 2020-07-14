@@ -273,7 +273,7 @@ add_shortcode('search_result_company_person', 'search_result_by_company_person')
 add_shortcode('search_profile_id', 'search_profile_by_id');
 
 function datatable_control() {
-    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-3.5.1.min.js');
+   /** wp_register_script( 'jquery', 'https://code.jquery.com/jquery-3.5.1.min.js');
     wp_enqueue_script('jquery');
     wp_register_script( 'datatable', 'https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js');
     wp_register_style( 'datatable', 'https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css');
