@@ -112,7 +112,7 @@ function search_profile_by_id(){
         
     </div>";
 
-    return $render_str;
+    return '<div id="search-result-profile">' . $render_str . "</div>";
 }
 
 function search_result_by_company_person($param) {
@@ -197,7 +197,7 @@ TABLE_M;
 TABLE;
     }
 
-    return $render_str;
+    return '<div id="search-result-profile">' . $render_str . "</div>";
 }
 
 

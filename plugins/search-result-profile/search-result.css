@@ -1,420 +1,451 @@
-.btn {
-    text-decoration: none;
-    padding-inline-start: 20px;
-    padding-inline-end: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 5px;
-    margin: 15px !important;
-}
-
-.btn-nopadding {
-    padding:0 !important;
-}
-.btn-nomargin {
-    margin: 0 !important;
-}
-
-.btn-font-bold {
-    font-weight: bold !important;
-}
-
-.btn-font-size-large {
-    font-size: large !important;
-}
-
-.btn-font-size-larger {
-    font-size: larger !important;
-}
-
-.btn-font-size-xlarge {
-    font-size: x-large !important;
-}
-
-.pull-right {
-    float: right;
-}
-
-.btn:focus, .btn:active:focus, .btn.active:focus,
-.form-control:focus,
-.btn.focus, .btn:active.focus, .btn.active.focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.btn-red, .btn-red:hover, .btn-red:focus {
-    color: #fff;
-    background-color: #db2a2a;
-    border-color: #db2a2a;
-}
-
-.btn:hover {
-    background-color: #555555;
-    border-color: #555555;
-}
-
-.btn-search:hover {
-    background-color: #000000;
-    border-color: #000000;
-}
-
-.filter-input {
-    margin: 0px !important;
-    height: 25px !important;
-    text-align: center !important;
-    border-radius: 5px !important;
-    /*background-color: aliceblue !important;*/
-}
-
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 25px;
-}
-.profile-section {
-    display: flex;
-    flex-direction: row;
-    margin-top: 15px;
-}
-.profile-section-col {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-    width: 23%;
-}
-.profile-img {
-    flex-grow: 1;
-}
-.profile-img img {
-    width: 220px;
-    height: 220px;
-}
-.profile-main {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-.margin-left-15 {
-    margin-left: 15px;
-}
-
-.profile-label-colored {
-    /*color:rgb(254, 146, 146);*/
-    color: #333333;
-    font-size: larger;
-}
-
-/*
-
-.profile-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.profile-image-content {
-    margin-left: 0px;
-}
-
-.profile-image {
-    width: 200px;
-    height: 200px;
-}
-
-
-
-.profile-content {
-    margin-left: 100px;
-}
-
-.profile-item {
-    margin-bottom: 15px;
-}
-
-.profile-item-email {
-    margin-bottom: 15px;
-}
-
-.profile-item-link {
-    margin-bottom: 15px;
-}
-
-.profile-item-email>label {
-    font-size: larger;
-    font-style:italic;
-    font-weight: bold;
-    color: black;
-}
-
-.profile-item-link>label {
-    font-size: larger;
-    font-style:italic;
-    font-weight: bold;
-    color: black;
-}
-.profile-item-link ul>li>a {
-    color:black;
-}
-
-
-.profile-item label {
-    font-size: x-large;
-    font-weight: bold;
-    color: black;
-}
-
-.profile-item p {
-    margin-left: 15px;
-}
-*/
-
-.hidden {
-    display: none;
-}
-
-#search-form {
-    margin-top: 35px;
-}
-
-#search-form .search-element {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.search-image {
-    width: 100px;
-    height: 100px;
-}
-
-.filter-input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#search-result-table th, td {
-    text-align: center;
-}
-
-#search-result-table td {
-    vertical-align: middle;
-}
-
-
-#search-result-table thead {
-    background-color: #333333;
-}
-
-#search-result-table th {
-    color: white;
-    vertical-align: top;
-    border-bottom: none;
-}
-
-#search-result-table_length {
-    display: none;
-}
-
-#search-result-table_filter {
-    display: none;
-}
-
-.link-btn a {
-    text-decoration: none;
-}
-
-.desktop-hidden {
-    display: none !important;
-}
-.width-8 {
-    width: 8%;
-}
-.width-12 {
-    width: 12%;
-}
-.width-20 {
-    width: 20%;
-}
-
-.search-btn {
-    text-align: right;
-    padding-right: 15px;
-}
-
-.color-white {
-    padding-inline-start: 8px;
-    padding-inline-end: 8px;
-    padding-top: 3px;
-    padding-top: 3px;
-    color: white;
-}
-
-.display-none {
-    display:none !important;
-}
-
-.red-colored {
-    background-color: red;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border-radius: 2px;
-}
-
-
-@media screen and (max-width: 768px) {
-    .btn-black {
-        color: #333333 !important;
-    }
-    .profile-container {
-        flex-direction: column;
-    }
-    .profile-content {
-        margin: 0px;
-    }
-    .search-image {
-        width: 80px;
-        height: 80px;
-    }
-    #search-result-table td {
-        text-align: left;
-    }
-    #search-result-table ul > li {
-        list-style: none;
-        color: #333333;
-    }
-    .profile-image {
-        width: 200px;
-        height: 200px;
-    }
-    .label-italic {
-        font-style: italic;
-    }
-    .label-colored {
-        color: initial !important;
-    }
-    #search-result-table thead {
-        visibility: collapse;
-    }
-    .profile-section {
-        flex-direction: column;
-    }
-    .profile-main {
-        margin-top: 15px;
-        margin-left: 15px;
-        width: 100%;
-    }
-
-    .profile-section-col {
-        width: 100%;
-    }
-    .profile-main .row .col-lg-8, .col-xs-10 {
-        transform: translateY(4px);
-    }
-    .profile-main .col-xs-10 {
-        padding: 0px !important;
+#search-result-profile {
+    /*
+        
+        .profile-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        
+        .profile-image-content {
+            margin-left: 0px;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+        }
+        
+        
+        
+        .profile-content {
+            margin-left: 100px;
+        }
+        
+        .profile-item {
+            margin-bottom: 15px;
+        }
+        
+        .profile-item-email {
+            margin-bottom: 15px;
+        }
+        
+        .profile-item-link {
+            margin-bottom: 15px;
+        }
+        
+        .profile-item-email>label {
+            font-size: larger;
+            font-style:italic;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .profile-item-link>label {
+            font-size: larger;
+            font-style:italic;
+            font-weight: bold;
+            color: black;
+        }
+        .profile-item-link ul>li>a {
+            color:black;
+        }
+        
+        
+        .profile-item label {
+            font-size: x-large;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .profile-item p {
+            margin-left: 15px;
+        }
+        */;
     }
     
-    .search-employer-btn {
-        margin-top: 0px !important;
+    #search-result-profile .btn {
+        text-decoration: none;
+        padding-inline-start: 20px;
+        padding-inline-end: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+        margin: 15px !important;
     }
-}
-
-.border-radius-zero {
-    border-radius: 0;
-}
-
-.search-employer-btn {
-    margin-top: 150px;
-}
-
-.linkedin-link {
-    color: red !important;
-}
-
-.mail-link {
-    color: gray !important;
-}
-
-#email-label .fa.active {
-    transform: rotateZ(180deg);
-}
-
-#email-label .fa {
-    margin-top: 10px;
-    color: white;
-    margin-right: 5px;
-    transition: transform .2s;
-}
-#link-label .fa.active {
-    transform: rotateZ(180deg);
-}
-
-#link-label .fa {
-    margin-top: 10px;
-    color: white;
-    margin-right: 5px;
-    transition: transform .2s;
-}
-.img-content {
-    vertical-align: top !important;
-    padding-top: 18px !important;
-}
-
-.colored-person-icon {
-    color: red;
-    font-size: xx-large !important;
-    text-transform: uppercase;
-    text-align: center; 
-    vertical-align: middle;
-}
-.colored-mail-icon {
-    color: red;
-    font-size: x-large !important;
-    text-transform: uppercase;
-    text-align: center; 
-    vertical-align: middle;
-}
-.linkedin-label-container {
-    border-radius: 50%;
-    background-color: red;
-    padding: 5px;
-    width: 30px;
-    height: 30px;
-}
-.colored-linkedin-icon {
-    color: white;
-    font-size: 20px !important;
-    text-transform: uppercase;
-    text-align: center; 
-    vertical-align: middle;
-    margin-left: 2px;
-    margin-bottom: 8px;
-
-}
-.profile-main .row .col-lg-8, .col-xs-10 {
-    transform: translateY(4px);
-}
-.name-label {
-    color: black;
-    font-size: x-large !important;
-    font-weight: bold;
-}
-.mail-label {
-    color: black;
-    font-size:large;
-    font-style:italic;
-    margin-right: 20px;
-}
-
-.main-profile {
-    color: black;
-}
-.line-spacing-1 {
-    margin-top: 2px !important;
-    margin-bottom: 2px !important;
-}
-
-.line-spacing-2 {
-    margin-top: 4px !important;
-    margin-bottom: 4px !important;
-}
+    
+    #search-result-profile .btn-nopadding {
+        padding: 0 !important;
+    }
+    
+    #search-result-profile .btn-nomargin {
+        margin: 0 !important;
+    }
+    
+    #search-result-profile .btn-font-bold {
+        font-weight: bold !important;
+    }
+    
+    #search-result-profile .btn-font-size-large {
+        font-size: large !important;
+    }
+    
+    #search-result-profile .btn-font-size-larger {
+        font-size: larger !important;
+    }
+    
+    #search-result-profile .btn-font-size-xlarge {
+        font-size: x-large !important;
+    }
+    
+    #search-result-profile .pull-right {
+        float: right;
+    }
+    
+    #search-result-profile .btn:focus, #search-result-profile .btn:active:focus, #search-result-profile .btn.active:focus,
+    #search-result-profile .form-control:focus,
+    #search-result-profile .btn.focus, #search-result-profile .btn:active.focus, #search-result-profile .btn.active.focus {
+        outline: none;
+        box-shadow: none;
+    }
+    
+    #search-result-profile .btn-red, #search-result-profile .btn-red:hover, #search-result-profile .btn-red:focus {
+        color: #fff;
+        background-color: #db2a2a;
+        border-color: #db2a2a;
+    }
+    
+    #search-result-profile .btn:hover {
+        background-color: #555555;
+        border-color: #555555;
+    }
+    
+    #search-result-profile .btn-search:hover {
+        background-color: #000000;
+        border-color: #000000;
+    }
+    
+    #search-result-profile .filter-input {
+        margin: 0px !important;
+        height: 25px !important;
+        text-align: center !important;
+        border-radius: 5px !important;
+        /*background-color: aliceblue !important;*/;
+    }
+    
+    #search-result-profile .profile-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 25px;
+    }
+    
+    #search-result-profile .profile-section {
+        display: flex;
+        flex-direction: row;
+        margin-top: 15px;
+    }
+    
+    #search-result-profile .profile-section-col {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        width: 23%;
+    }
+    
+    #search-result-profile .profile-img {
+        flex-grow: 1;
+    }
+    
+    #search-result-profile .profile-img img {
+        width: 220px;
+        height: 220px;
+    }
+    
+    #search-result-profile .profile-main {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+    
+    #search-result-profile .margin-left-15 {
+        margin-left: 15px;
+    }
+    
+    #search-result-profile .profile-label-colored {
+        /*color:rgb(254, 146, 146);*/
+        color: #333333;
+        font-size: larger;
+    }
+    
+    #search-result-profile .hidden {
+        display: none;
+    }
+    
+    #search-result-profile #search-form {
+        margin-top: 35px;
+    }
+    
+    #search-result-profile #search-form .search-element {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+    #search-result-profile .search-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    #search-result-profile .filter-input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #search-result-profile #search-result-table th, #search-result-profile td {
+        text-align: center;
+    }
+    
+    #search-result-profile #search-result-table td {
+        vertical-align: middle;
+    }
+    
+    #search-result-profile #search-result-table thead {
+        background-color: #333333;
+    }
+    
+    #search-result-profile #search-result-table th {
+        color: white;
+        vertical-align: top;
+        border-bottom: none;
+    }
+    
+    #search-result-profile #search-result-table_length {
+        display: none;
+    }
+    
+    #search-result-profile #search-result-table_filter {
+        display: none;
+    }
+    
+    #search-result-profile .link-btn a {
+        text-decoration: none;
+    }
+    
+    #search-result-profile .desktop-hidden {
+        display: none !important;
+    }
+    
+    #search-result-profile .width-8 {
+        width: 8%;
+    }
+    
+    #search-result-profile .width-12 {
+        width: 12%;
+    }
+    
+    #search-result-profile .width-20 {
+        width: 20%;
+    }
+    
+    #search-result-profile .search-btn {
+        text-align: right;
+        padding-right: 15px;
+    }
+    
+    #search-result-profile .color-white {
+        padding-inline-start: 8px;
+        padding-inline-end: 8px;
+        padding-top: 3px;
+        padding-top: 3px;
+        color: white;
+    }
+    
+    #search-result-profile .display-none {
+        display: none !important;
+    }
+    
+    #search-result-profile .red-colored {
+        background-color: red;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        border-radius: 2px;
+    }
+    
+    @media screen and (max-width: 768px) {
+        #search-result-profile .btn-black {
+            color: #333333 !important;
+        }
+    
+        #search-result-profile .profile-container {
+            flex-direction: column;
+        }
+    
+        #search-result-profile .profile-content {
+            margin: 0px;
+        }
+    
+        #search-result-profile .search-image {
+            width: 80px;
+            height: 80px;
+        }
+    
+        #search-result-profile #search-result-table td {
+            text-align: left;
+        }
+    
+        #search-result-profile #search-result-table ul > li {
+            list-style: none;
+            color: #333333;
+        }
+    
+        #search-result-profile .profile-image {
+            width: 200px;
+            height: 200px;
+        }
+    
+        #search-result-profile .label-italic {
+            font-style: italic;
+        }
+    
+        #search-result-profile .label-colored {
+            color: initial !important;
+        }
+    
+        #search-result-profile #search-result-table thead {
+            visibility: collapse;
+        }
+    
+        #search-result-profile .profile-section {
+            flex-direction: column;
+        }
+    
+        #search-result-profile .profile-main {
+            margin-top: 15px;
+            margin-left: 15px;
+            width: 100%;
+        }
+    
+        #search-result-profile .profile-section-col {
+            width: 100%;
+        }
+    
+        #search-result-profile .profile-main .row .col-lg-8, #search-result-profile .col-xs-10 {
+            transform: translateY(4px);
+        }
+    
+        #search-result-profile .profile-main .col-xs-10 {
+            padding: 0px !important;
+        }
+    
+        #search-result-profile .search-employer-btn {
+            margin-top: 0px !important;
+        }
+    }
+    
+    #search-result-profile .border-radius-zero {
+        border-radius: 0;
+    }
+    
+    #search-result-profile .search-employer-btn {
+        margin-top: 150px;
+    }
+    
+    #search-result-profile .linkedin-link {
+        color: red !important;
+    }
+    
+    #search-result-profile .mail-link {
+        color: gray !important;
+    }
+    
+    #search-result-profile #email-label .fa.active {
+        transform: rotateZ(180deg);
+    }
+    
+    #search-result-profile #email-label .fa {
+        margin-top: 10px;
+        color: white;
+        margin-right: 5px;
+        transition: transform .2s;
+    }
+    
+    #search-result-profile #link-label .fa.active {
+        transform: rotateZ(180deg);
+    }
+    
+    #search-result-profile #link-label .fa {
+        margin-top: 10px;
+        color: white;
+        margin-right: 5px;
+        transition: transform .2s;
+    }
+    
+    #search-result-profile .img-content {
+        vertical-align: top !important;
+        padding-top: 18px !important;
+    }
+    
+    #search-result-profile .colored-person-icon {
+        color: red;
+        font-size: xx-large !important;
+        text-transform: uppercase;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    #search-result-profile .colored-mail-icon {
+        color: red;
+        font-size: x-large !important;
+        text-transform: uppercase;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    #search-result-profile .linkedin-label-container {
+        border-radius: 50%;
+        background-color: red;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    #search-result-profile .colored-linkedin-icon {
+        color: white;
+        font-size: 20px !important;
+        text-transform: uppercase;
+        text-align: center;
+        vertical-align: middle;
+        margin-left: 2px;
+        margin-bottom: 8px;
+    }
+    
+    #search-result-profile .profile-main .row .col-lg-8, #search-result-profile .col-xs-10 {
+        transform: translateY(4px);
+    }
+    
+    #search-result-profile .name-label {
+        color: black;
+        font-size: x-large !important;
+        font-weight: bold;
+    }
+    
+    #search-result-profile .mail-label {
+        color: black;
+        font-size: large;
+        font-style: italic;
+        margin-right: 20px;
+    }
+    
+    #search-result-profile .main-profile {
+        color: black;
+    }
+    
+    #search-result-profile .line-spacing-1 {
+        margin-top: 2px !important;
+        margin-bottom: 2px !important;
+    }
+    
+    #search-result-profile .line-spacing-2 {
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+    }
