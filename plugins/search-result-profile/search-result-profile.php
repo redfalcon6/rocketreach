@@ -13,7 +13,40 @@ function isMobile() {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
 
+
+$inserted = FALSE;
+
+function datatable_control() {
+    global $inserted;
+    if ($inserted === FALSE) {
+        wp_register_script( 'jquery', 'https://code.jquery.com/jquery-3.5.1.min.js');
+        wp_enqueue_script('jquery');
+        wp_register_script( 'datatable', 'https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js');
+        wp_register_style( 'datatable', 'https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css');
+        wp_enqueue_style('datatable');
+        wp_enqueue_script('datatable');
+        wp_register_script('datatable_responsive', "https://cdn.datatables.net/responsive/1.0.2/js/dataTables.responsive.js");
+        wp_register_script('datatable_responsive_bootstrap', "//cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.js");
+        wp_register_style('bootstrap_css', "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css");
+        wp_enqueue_style('bootstrap_css');
+        wp_register_script('bootstrap_js', "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js");
+        wp_enqueue_script('bootstrap_js');
+        wp_register_style('fontawesome', "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+        wp_enqueue_style('fontawesome');
+
+        wp_register_style('search_result_c_p', plugins_url('search-result.css', __FILE__ ));
+        wp_enqueue_style('search_result_c_p');
+        wp_register_script( 'search_result_c_p', plugins_url('search-result.js', __FILE__ ));
+        wp_enqueue_script('search_result_c_p');
+
+        $inserted = TRUE;
+    }
+}
+
+
 function search_profile_by_id(){
+    datatable_control();
+
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         //$url = 'https://api.rocketreach.co/v1/api/lookupProfile?api_key=3E7k0123456789abcdef0123456789abcdef&id='. $id;
@@ -116,6 +149,8 @@ function search_profile_by_id(){
 }
 
 function search_result_by_company_person($param) {
+    datatable_control();
+
     $_SESSION['search_employer_url'] = $_SERVER["REQUEST_URI"];
     $no_whitespaces = preg_replace( '/\s*,\s*/', ',', filter_var( $param['search_key'], FILTER_SANITIZE_STRING ) ); 
     $s_key_array = [];
@@ -271,27 +306,3 @@ add_action( 'rest_api_init', function () {
 
 add_shortcode('search_result_company_person', 'search_result_by_company_person');
 add_shortcode('search_profile_id', 'search_profile_by_id');
-
-function datatable_control() {
-    wp_register_script( 'jquery', 'https://code.jquery.com/jquery-3.5.1.min.js');
-    wp_enqueue_script('jquery');
-    wp_register_script( 'datatable', 'https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js');
-    wp_register_style( 'datatable', 'https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css');
-    wp_enqueue_style('datatable');
-    wp_enqueue_script('datatable');
-    wp_register_script('datatable_responsive', "https://cdn.datatables.net/responsive/1.0.2/js/dataTables.responsive.js");
-    wp_register_script('datatable_responsive_bootstrap', "//cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.js");
-    wp_register_style('bootstrap_css', "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css");
-    wp_enqueue_style('bootstrap_css');
-    wp_register_script('bootstrap_js', "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js");
-    wp_enqueue_script('bootstrap_js');
-    wp_register_style('fontawesome', "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-    wp_enqueue_style('fontawesome');
-
-    wp_register_style('search_result_c_p', plugins_url('search-result.css', __FILE__ ));
-    wp_enqueue_style('search_result_c_p');
-    wp_register_script( 'search_result_c_p', plugins_url('search-result.js', __FILE__ ));
-    wp_enqueue_script('search_result_c_p');
-}
-
-add_action('wp_enqueue_scripts', 'datatable_control');
