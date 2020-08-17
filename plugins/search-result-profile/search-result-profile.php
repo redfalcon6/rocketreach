@@ -235,6 +235,22 @@ TABLE;
     return '<div id="search-result-profile">' . $render_str . "</div>";
 }
 
+function checkRemoteFile($url)
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_NOBODY, 1);
+    curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    if(curl_exec($ch)!==FALSE)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 function search_profiles(WP_REST_Request $request) {
     $params = $request->get_body_params();
@@ -279,7 +295,7 @@ function search_profiles(WP_REST_Request $request) {
                 ];
             } else {
                 $data[] = [
-                    "<a href=" . $params['profile_uri'] . "?id=". $profile->id . "> <img class='search-image' src='". ($profile->profile_pic ? $profile->profile_pic : plugins_url('person.png', __FILE__ )) . "' /></a>",
+                    "<a href=" . $params['profile_uri'] . "?id=". $profile->id . "> <img class='search-image' src='". ($profile->profile_pic && checkRemoteFile($profile->profile_pic) ? $profile->profile_pic : plugins_url('person.png', __FILE__ )) . "' /></a>",
                     $profile->name,
                     $profile->current_employer,
                     $profile->current_title,

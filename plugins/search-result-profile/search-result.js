@@ -18,6 +18,7 @@ jQuery(document).ready( function(){
         "bProcessing": true,
         "bServerSide": true,
         "sAjaxSource": "/wp-json/employers/profiles",
+        "bSort": false,
         "fnServerParams": function ( aoData ) {
             for (let key in searchData) {
                 aoData.push({
